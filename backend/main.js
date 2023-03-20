@@ -1,8 +1,13 @@
 const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser')
 const drugstoreController = require("./src/controllers/drugstore.controller");
+
 
 const app = express();
 const PORT = 3310;
+app.use(cors());
+app.use(bodyParser.json())
 
 app.listen(PORT, (error) =>{
     if(!error)
@@ -13,6 +18,6 @@ app.listen(PORT, (error) =>{
 );
 
 app.get("/drugstore",drugstoreController.listDrugstore);
-app.delete("/drugstore/:id",drugstoreController.deleteDrugstore);
+app.delete("/drugstore",drugstoreController.deleteDrugstore);
 
 module.exports = app;

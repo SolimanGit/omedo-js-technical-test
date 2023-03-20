@@ -1,5 +1,4 @@
 const DrugstoreModel = require("../models/drugstore.model");
-
 const data = [
   {
     id: 0,
@@ -83,12 +82,25 @@ const data = [
   },
 ];
 
+//Find the index of the drugstore in the data array
+const findDrungstoreIndex = (drugstoreId) => {
+  return  data.findIndex((e) => e.id === drugstoreId)
+};
+
 const listDrugstores = () => {
   return data.map((e) => new DrugstoreModel(e));
 };
 
 const deleteDrugstore = (drugstoreId) => {
   // TODO
+  let drugstoreIndex = findDrungstoreIndex(drugstoreId)
+  return new Promise(function(resolve, reject) {
+    let newTable = data.splice(drugstoreIndex, 1)
+    if (newTable.length < data.length) {
+      resolve(200);
+    }
+    reject(500)
+  });
 };
 
 module.exports = {

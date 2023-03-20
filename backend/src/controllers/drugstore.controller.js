@@ -1,12 +1,15 @@
 const service = require("../services/drugstore.service");
 
 const listDrugstore = (req, res) => {
-  res.send(service.listDrugstores());
+  // TODO
+  res.send(service.listDrugstores(req.query));
 };
 
-const deleteDrugstore = (req, res) => {
+const deleteDrugstore = async (req, res) => {
   // TODO
-};
+  await service.deleteDrugstore(req.query) == 200 ? res.sendStatus(200) : res.sendStatus(500)
+}
+  
 
 module.exports = {
   listDrugstore,
